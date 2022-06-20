@@ -18,7 +18,7 @@ print("Displaying the number of instances for articles")
 for key,val in num_instances.items():
   print(key, val)
   
-editors = knol.get_editors(dir_path='/home/descentis/knolml_dataset/wikipedia_articles', granularity='monthly')
+editors = knol.get_editors(dir_path='~/knolml_dataset/wikipedia_articles', granularity='monthly')
 
 print("Displaying the editor names")
 for key,val in editors.items():
