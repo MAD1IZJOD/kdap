@@ -1270,6 +1270,15 @@ class knol(object):
         else:
             pNum = cnum
         for i in range(pNum):
+            if kwargs.get('file_list') is not None:
+                dir_limit = 0
+                file_path = file_list[i]
+                for j in range(len(file_path)-1, -1, -1):
+                    if(file_path[j]=='/'):
+                        dir_limit = j
+                        break
+                
+                dir_path = file_path[0:dir_limit]
             if kwargs.get('granularity') is not None:
                 granularity = kwargs['granularity']
                 start = kwargs['start']
