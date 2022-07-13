@@ -1673,8 +1673,12 @@ class knol(object):
                                     except:
                                         s2 = []
 
+                                    if isinstance(s2, str) is True:
+                                        s2 = [s2]
                                     sinter = sinter + s2
 
+                            if isinstance(s1, str) is True:
+                                s1 = [s1]
                             stotal = stotal + s1
                             try:
                                 similarity[article][date][month][day] = len(set(s1) & set(sinter)) / len(stotal)
