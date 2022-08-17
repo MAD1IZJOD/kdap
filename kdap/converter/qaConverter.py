@@ -1141,7 +1141,7 @@ class qaConverter(object):
                 '''
                 calling the KML converter for Stack_exchange
                 '''
-                call_7z(kwargs, name)
+                qaConverter.call_7z(kwargs, name)
                 
             else:
                 '''
@@ -1153,6 +1153,6 @@ class qaConverter(object):
 
                 call(["7z","x",'stackexchange/'+siteName,'-o'+name])
                 
-                call_7z(kwargs, name)
+                qaConverter.call_7z(kwargs, name)
                 
                 
