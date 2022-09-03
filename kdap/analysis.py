@@ -566,9 +566,9 @@ class knol(object):
             raise TypeError('download_dataset() requires at least one of article_list, category_list or template_list\
                             arguments to be specified')
 
-        if(kwargs.get('compress') is not None):
-            compress_bool = kwargs.get('compress')
-        else:
+        try:
+            compress_bool = kwargs['compress']
+        except:
             compress_bool = False
 
         sitename = sitename.lower()
