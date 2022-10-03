@@ -32,6 +32,7 @@ from kdap.converter.wikiConverter import wikiConverter
 from kdap.converter.wiki_clean import getCleanText
 from kdap.wiki_graph import graph_creater as gp
 from kdap.wikiextract.wikiExtract import wikiExtract
+from kdap.models.enums.granularity import Granularity
 
 
 class instances(object):
@@ -1475,16 +1476,16 @@ class knol(object):
                                                 if t > e:
                                                     editor_bool = 0
                                                     continue
-                                            if kwargs['granularity'].lower() == 'monthly':
+                                            if kwargs['granularity'].lower() == Granularity.MONTHLY.value:
                                                 if editor_dict.get(t.year) is None:
                                                     editor_dict[t.year] = {}
                                                     editor_dict[t.year][t.month] = []
                                                 elif editor_dict[t.year].get(t.month) is None:
                                                     editor_dict[t.year][t.month] = []
-                                            elif kwargs['granularity'].lower() == 'yearly':
+                                            elif kwargs['granularity'].lower() == Granularity.YEARLY.value:
                                                 if editor_dict.get(t.year) is None:
                                                     editor_dict[t.year] = []
-                                            elif kwargs['granularity'].lower() == 'daily':
+                                            elif kwargs['granularity'].lower() == Granularity.DAILY.value:
                                                 if editor_dict.get(t.year) is None:
                                                     editor_dict[t.year] = {}
                                                     editor_dict[t.year][t.month] = {}
@@ -1501,20 +1502,20 @@ class knol(object):
                                         U = chi.text
 
                                     if editor_bool:
+                                        if kwargs.get('granularity') is not None:
+                                            if kwargs['granularity'].lower() is not None:
+                                                if kwargs['granularity'].lower() == Granularity.MONTHLY.value:
 
-                                        if kwargs['granularity'].lower() is not None:
-                                            if kwargs['granularity'].lower() == 'monthly':
+                                                    if U not in editor_dict[t.year][t.month]:
+                                                        editor_dict[t.year][t.month].append(U)
 
-                                                if U not in editor_dict[t.year][t.month]:
-                                                    editor_dict[t.year][t.month].append(U)
+                                                elif kwargs['granularity'].lower() == Granularity.DAILY.value:
+                                                    if U not in editor_dict[t.year][t.month][t.day]:
+                                                        editor_dict[t.year][t.month][t.day].append(U)
 
-                                            elif kwargs['granularity'].lower() == 'daily':
-                                                if U not in editor_dict[t.year][t.month][t.day]:
-                                                    editor_dict[t.year][t.month][t.day].append(U)
-
-                                            elif kwargs['granularity'].lower() == 'yearly':
-                                                if U not in editor_dict[t.year]:
-                                                    editor_dict[t.year].append(U)
+                                                elif kwargs['granularity'].lower() == Granularity.YEARLY.value:
+                                                    if U not in editor_dict[t.year]:
+                                                        editor_dict[t.year].append(U)
                                     else:
                                         if U not in uList:
                                             uList.append(U)
