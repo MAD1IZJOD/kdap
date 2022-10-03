@@ -562,7 +562,7 @@ class knol(object):
         \*\*final_template_list : list[str]
             A list of wikipedia article names. Only when template_list is provided as argument
         """
-        if sitename != 'stackexchange' and kwargs['article_list'] is None and kwargs['catgory_list'] is None and kwargs['template_list'] is None:
+        if sitename != 'stackexchange' and kwargs.get('article_list') is None and kwargs.get('category_list') is None and kwargs.get('template_list') is None:
             raise TypeError('download_dataset() requires at least one of article_list, category_list or template_list\
                             arguments to be specified')
 
