@@ -711,19 +711,23 @@ class knol(object):
         output_dir = 'output'
         if kwargs.get('output_dir') is not None:
             output_dir = kwargs['output_dir']
+        if kwargs.get('history') is not None:
+            history = kwargs['history']
+        else:
+            history = True
 
         if article_name in wiki_names:
             if compress:
-                wikiConverter.getArticle(file_name=article_name, output_dir='outputD')
+                wikiConverter.getArticle(file_name=article_name, output_dir='outputD', history=history)
                 article_name = article_name.replace(' ', '_')
                 article_name = article_name.replace('/', '__')
                 wikiConverter.compress('outputD/' + article_name + '.knolml', output_dir)
             else:
-                wikiConverter.getArticle(file_name=article_name, output_dir=output_dir)
+                wikiConverter.getArticle(file_name=article_name, output_dir=output_dir, history=history)
         else:
             print("Article name is not found. Taking '" + wiki_names[0] + "' as the article name")
             article_name = wiki_names[0]
-            wikiConverter.getArticle(file_name=article_name, output_dir='outputD')
+            wikiConverter.getArticle(file_name=article_name, output_dir='outputD', history=history)
             article_name = article_name.replace(' ', '_')
             article_name = article_name.replace('/', '__')
             wikiConverter.compress('outputD/' + article_name + '.knolml', output_dir)
