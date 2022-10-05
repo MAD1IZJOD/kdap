@@ -514,6 +514,11 @@ class wikiConverter(object):
        
         if(kwargs.get('file_list')!=None):
             featuredArticleList = kwargs['file_list']
+
+        if(kwargs.get('history')!=None):
+            history = kwargs['history']
+        else:
+            history = True
             
         if(kwargs.get('output_dir')!=None):
             output_dir = kwargs['output_dir']+'/'
@@ -527,6 +532,12 @@ class wikiConverter(object):
             articleName = articleName.replace(' ','_')
             articleName = articleName.replace('/','__')
             file_handler = io.open(output_dir+articleName+'.xml', mode='w+', encoding='utf-8')
+
+            if history:
+                url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=1&action=submit'
+            else:
+                url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=0&action=submit'
+		
             url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=1&action=submit'
             headers = {
 			'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Mobile Safari/537.36'
