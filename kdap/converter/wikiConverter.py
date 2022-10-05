@@ -536,7 +536,7 @@ class wikiConverter(object):
             if history:
                 url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=1&action=submit'
             else:
-                url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=0&action=submit'
+                url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&curonly=1&action=submit'
 		
             url = 'https://en.m.wikipedia.org/w/index.php?title=Special:Export&pages=' + articleName + '&history=1&action=submit'
             headers = {
